@@ -21,6 +21,8 @@
     "request": "^2.88.2"
   },
   "dependencies": {
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "jquery": "^3.5.1",
+    "underscore": "^1.11.0"
   }
 }

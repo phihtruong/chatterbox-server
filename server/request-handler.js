@@ -75,12 +75,21 @@ var requestHandler = function(request, response) {
       data.results.push(chunkObj);
     });
     response.end();
+  } else if (request.method === 'DELETE' && request.url.includes('/classes/messages')) {
+    response.writeHead(202, headers);
+    var id = Number(request.url.slice(-5));
+
+    data.results.forEach((message, i) => {
+      if (message.message_id === id) {
+        data.results.splice(i, 1);
+      }
+    });
+    response.end();
   } else if (request.url !== '/classes/messages') {
     response.writeHead(404, headers);
     response.end('Not Found');
   }
 };
-
 // These headers will allow Cross-Origin Resource Sharing (CORS).
 // This code allows this server to talk to websites that
 // are on different domains, for instance, your chat client.
@@ -92,3 +101,4 @@ var requestHandler = function(request, response) {
 // client from this domain by setting up static file serving.
 
 exports.requestHandler = requestHandler;
+exports.data = data;
