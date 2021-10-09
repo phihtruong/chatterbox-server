@@ -68,15 +68,6 @@ var requestHandler = function(request, response) {
     response.writeHead(200, headers);
     response.end(JSON.stringify(data));
   } else if (request.method === 'POST' && request.url.includes('/classes/messages')) {
-    // let _data = '';
-    // request.on('data', chunk => {
-    //   _data += chunk;
-    //   console.log('data: ', _data);
-    // });
-    // request.on('end', () => {
-    //   console.log(JSON.parse(_data)); // 'Buy the milk'
-    //   response.end();
-    // });
     response.writeHead(201, headers);
     request.on('data', (chunk) => {
       var chunkObj = JSON.parse(chunk);
